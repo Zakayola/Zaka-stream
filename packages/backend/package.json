@@ -1,0 +1,32 @@
+{
+  "name": "@zaka-stream/backend",
+  "version": "1.0.0",
+  "description": "Zaka-Stream off-chain indexer and REST API",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "lint": "eslint src --ext .ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "^12.3.0",
+    "fastify": "^4.28.0",
+    "@fastify/cors": "^9.0.0",
+    "pino": "^9.2.0",
+    "pino-pretty": "^11.2.0",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0",
+    "eslint": "^9.5.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0"
+  }
+}

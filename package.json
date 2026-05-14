@@ -1,0 +1,33 @@
+{
+  "name": "zaka-stream",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Decentralized token streaming protocol on Stellar/Soroban",
+  "author": "AlAfiz <https://github.com/AlAfiz>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zakayola/Zaka-Stream.git"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\""
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "prettier": "^3.3.0",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "packageManager": "npm@10.8.0"
+}
