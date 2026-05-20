@@ -323,7 +323,7 @@ mod tests {
 
     fn create_token(env: &Env, admin: &Address) -> Address {
         let token_address = env.register_stellar_asset_contract_v2(admin.clone());
-        token_address
+        token_address.address()
     }
 
     #[test]
