@@ -3,7 +3,7 @@
 use soroban_sdk::{
     contract, contractimpl, contracttype,
     token, symbol_short,
-    Address, Env, Symbol, Vec,
+    Address, Env,
 };
 
 // ──────────────────────────────────────────────────────────
@@ -322,7 +322,7 @@ mod tests {
     };
 
     fn create_token(env: &Env, admin: &Address) -> Address {
-        let token_address = env.register_stellar_asset_contract(admin.clone());
+        let token_address = env.register_stellar_asset_contract_v2(admin.clone());
         token_address
     }
 
@@ -341,7 +341,7 @@ mod tests {
         let duration: u64 = 1_000;              // 1000 seconds
         token_admin.mint(&sender, &total_amount);
 
-        let contract_id = env.register_contract(None, ZakaStreamContract);
+        let contract_id = env.register(ZakaStreamContract, ());
         let client = ZakaStreamContractClient::new(&env, &contract_id);
 
         // Set ledger timestamp to 1000
@@ -386,7 +386,7 @@ mod tests {
         let duration: u64 = 1_000;
         token_admin.mint(&sender, &total_amount);
 
-        let contract_id = env.register_contract(None, ZakaStreamContract);
+        let contract_id = env.register(ZakaStreamContract, ());
         let client = ZakaStreamContractClient::new(&env, &contract_id);
 
         env.ledger().set_timestamp(0);
@@ -428,7 +428,7 @@ mod tests {
         let duration: u64 = 1_000;
         token_admin.mint(&sender, &total_amount);
 
-        let contract_id = env.register_contract(None, ZakaStreamContract);
+        let contract_id = env.register(ZakaStreamContract, ());
         let client = ZakaStreamContractClient::new(&env, &contract_id);
 
         env.ledger().set_timestamp(0);
