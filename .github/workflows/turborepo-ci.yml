@@ -1,0 +1,48 @@
+name: zaka-stream CI
+
+
+on:
+ push:
+   branches:
+     - main
+ pull_request:
+   branches:
+     - main
+
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+
+     # Set up the Node.js environment for the Fastify and Next.js apps
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+    #Set up the Rust environment for the Soroban smart contracts
+      - name: Install Rust Toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+         target: wasm32-unknown-unknown
+    
+      - name: Install Node Dependencies
+        run: npm install
+
+      - name: Run Smart contracts tests
+        # We need to cd into the contracts folder
+        working-directory: ./packages/contracts
+        run: cargo test
+
+      - name: Build Smart Contracts (WASM)
+        working-directory: ./packages/contracts
+        run: cargo build --target wasm32-unknown-unknown --release
+
+      - name: Build the Web packages (Turborepo)
+        run: npm run build
