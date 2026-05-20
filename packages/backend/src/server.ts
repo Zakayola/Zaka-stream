@@ -22,7 +22,7 @@ const logger = pino({
 // ── Build App ─────────────────────────────────────────────
 
 const app = Fastify({
-  loggerInstance: logger,
+  logger: logger,
   disableRequestLogging: false,
 });
 
